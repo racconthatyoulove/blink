@@ -1,12 +1,25 @@
+
 # ✨ Blink Runtime
 
 > A modern, sleek runtime for the Blink programming language — designed for simplicity, speed, and clarity.
 
 ---
 
+## 📚 Table of Contents
+- [Overview](#-overview)
+- [Features](#-features)
+- [Core Design](#-core-design)
+- [Example Syntax](#-example-syntax)
+- [Running Blink](#-running-blink)
+- [Development Notes](#-development-notes)
+- [Philosophy](#-philosophy)
+- [License](#-license)
+
+---
+
 ## 🚀 Overview
 
-**Blink Runtime** is the execution layer for Blink — a structured, interpreted language built to simplify game development and rapid prototyping.  
+**Blink Runtime** is the execution layer for **Blink** — a structured, interpreted language built to simplify game development and rapid prototyping.  
 It’s written with modularity and readability in mind, following clean design principles.
 
 ---
@@ -23,7 +36,7 @@ It’s written with modularity and readability in mind, following clean design p
 
 ## 🧠 Core Design
 
-```
+```text
 /Blink
  ┣ 📂 lang
  ┃ ┣ 📜 lexer.go
