@@ -188,6 +188,39 @@ wait 1.322  # Wait 1.322 seconds (precise timing)
 - Simple syntax: `wait <duration>` where duration is in seconds
 - Execution pauses at the wait command before continuing
 
+### 🛡️ Variable Management & Protection
+
+**Variable Overwrite Protection**: Prevents accidental variable reassignment with helpful guidance
+
+```blink
+x = "hello"
+y = "sir"
+say(x + " " + y)
+
+# Trying to overwrite existing variables will show helpful error:
+# x = "new value"  # Error with instructions on how to remove first
+```
+
+**remove Command**: Clean variable removal for intentional reassignment
+
+```blink
+# Remove single or multiple variables
+remove = x
+remove = x, y, z
+
+# After removal, variables can be reassigned
+x = "heyyyy"
+y = "woow"
+say(x + " " + y)
+```
+
+**Features:**
+- **Smart Protection**: Prevents accidental variable overwrites
+- **Helpful Errors**: Clear instructions on how to remove variables
+- **Batch Removal**: Remove multiple variables in one command
+- **Extensible Design**: Built to support future features like windows
+- **User-Friendly**: Provides feedback on successful removals
+
 ### 🎯 Practical Examples
 
 **If-Else Logic Example**
@@ -235,6 +268,25 @@ wait 1.0
 say("Go!")
 ```
 
+**Variable Management Example**
+```blink
+# Create variables
+x = "hello"
+y = "sir"
+say(x + " " + y)
+
+# Remove and reassign
+remove = x, y
+x = "heyyyy"
+y = "woow"
+say(x + " " + y)
+
+# Output:
+# hello sir
+# Removed variables: x, y
+# heyyyy woow
+```
+
 ## 🎯 Language Philosophy
 
 **Simplicity First**
@@ -244,6 +296,8 @@ say("Go!")
 
 **What Blink Does Well**
 - ✅ Variables and data types (numbers, strings, booleans)
+- ✅ Variable overwrite protection with helpful error messages
+- ✅ Clean variable removal with `remove` command
 - ✅ Arithmetic operations with full precision
 - ✅ String concatenation and mixed-type operations
 - ✅ Comparison operators (all 6 types)
