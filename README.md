@@ -216,6 +216,44 @@ wait 1.322  # Wait 1.322 seconds (precise timing)
 - Simple syntax: `wait <duration>` where duration is in seconds
 - Execution pauses at the wait command before continuing
 
+### 💬 Interactive Input
+
+**ask Command**: Get user input interactively from the terminal
+
+```blink
+ask("What's your name?") {
+    name = answer
+    say("Hello, " + name + "!")
+}
+
+ask("What's your age?") {
+    age = answer
+    say("You are " + age + " years old.")
+}
+
+say("Nice to meet you, " + name + "!")
+remove = name, age
+```
+
+**Terminal Output Format:**
+```
+What's your name?
+> Jeff
+Hello, Jeff!
+What's your age?
+> 25
+You are 25 years old.
+Nice to meet you, Jeff!
+```
+
+**Features:**
+- Interactive terminal prompts with custom questions
+- Automatic `answer` variable creation with user input
+- Clean formatting with question on one line, input on next with ">" prompt
+- Block execution after receiving input
+- Works seamlessly with loops, conditionals, and other language features
+- Perfect for creating interactive programs and user-driven applications
+
 ### 🛡️ Variable Management & Protection
 
 **Variable Overwrite Protection**: Prevents accidental variable reassignment with helpful guidance
@@ -339,12 +377,32 @@ loop max_iterations {
 }
 ```
 
+**Interactive Program Example**
+```blink
+# Interactive greeting program
+ask("What's your name?") {
+    name = answer
+    say("Hello, " + name + "!")
+}
+
+ask("How old are you?") {
+    age = answer
+    if age >= 18 {
+        say("You're an adult!")
+    } else {
+        say("You're still young!")
+    }
+}
+
+say("Nice chatting with you, " + name + "!")
+remove = name, age
+```
+
 ## 🎯 Language Philosophy
 
 **Simplicity First**
 - No complex syntax - just essential features
 - Easy to learn, powerful to use
-- Focus on clarity over complexity
 
 **What Blink Does Well**
 - ✅ Variables and data types (numbers, strings, booleans)
@@ -357,6 +415,8 @@ loop max_iterations {
 - ✅ Single else blocks for clear, readable logic
 - ✅ **Loop statements with automatic iteration counter**
 - ✅ **Nested loops with proper variable scoping**
+- ✅ **Interactive input with `ask` command**
+- ✅ **Clean terminal formatting for user interaction**
 - ✅ Parentheses and expression evaluation
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
