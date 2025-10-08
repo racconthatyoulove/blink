@@ -254,6 +254,43 @@ Nice to meet you, Jeff!
 - Works seamlessly with loops, conditionals, and other language features
 - Perfect for creating interactive programs and user-driven applications
 
+### 🎲 Random Selection
+
+**random Command**: Randomly select one option from a list of choices
+
+```blink
+random(apple, banana, cherry, grape) {
+    fruit = chosen
+    say("Randomly selected: " + fruit)
+}
+
+random(1, 2, 3, 4, 5, a, 6, b, c, %, **, 444a) {
+    result = chosen
+    say("Random choice: " + result)
+    wait 2
+    remove = result
+}
+
+say("The fruit was: " + fruit)
+remove = fruit
+```
+
+**Example Output:**
+```
+Randomly selected: banana
+Random choice: **
+The fruit was: banana
+```
+
+**Features:**
+- Random selection from any number of options
+- Supports numbers, letters, symbols, and combinations
+- Equal probability for all options regardless of type
+- Automatic `chosen` variable creation with selected option
+- Block execution after random selection
+- Perfect for games, decision making, and randomized content
+- Works seamlessly with loops, conditionals, and other language features
+
 ### 🛡️ Variable Management & Protection
 
 **Variable Overwrite Protection**: Prevents accidental variable reassignment with helpful guidance
@@ -398,6 +435,29 @@ say("Nice chatting with you, " + name + "!")
 remove = name, age
 ```
 
+**Random Game Example**
+```blink
+# Simple random game
+say("Welcome to the Random Adventure!")
+
+random(forest, cave, mountain, beach) {
+    location = chosen
+    say("You find yourself in a " + location)
+}
+
+random(treasure, monster, friend, nothing) {
+    encounter = chosen
+    if encounter == treasure {
+        say("You found a treasure chest!")
+    } else {
+        say("You encountered: " + encounter)
+    }
+}
+
+say("Your adventure in the " + location + " is complete!")
+remove = location, encounter
+```
+
 ## 🎯 Language Philosophy
 
 **Simplicity First**
@@ -417,6 +477,8 @@ remove = name, age
 - ✅ **Nested loops with proper variable scoping**
 - ✅ **Interactive input with `ask` command**
 - ✅ **Clean terminal formatting for user interaction**
+- ✅ **Random selection with `random` command**
+- ✅ **Equal probability distribution for all options**
 - ✅ Parentheses and expression evaluation
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
