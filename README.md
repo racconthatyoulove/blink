@@ -167,6 +167,27 @@ say("Values: " + x + ", " + y)          # Debug information
 say("Result: " + final_result)          # Program results
 ```
 
+### ⏱️ Timing Control
+
+**wait Command**: Pause execution for precise timing control
+
+```blink
+say("This message appears immediately")
+wait 1.5
+say("This message appears after 1.5 seconds")
+
+# Examples with different durations
+wait 0.5    # Wait half a second
+wait 2.0    # Wait 2 seconds  
+wait 1.322  # Wait 1.322 seconds (precise timing)
+```
+
+**Features:**
+- Supports decimal precision for exact timing
+- Perfect for creating delays, countdowns, and timed sequences
+- Simple syntax: `wait <duration>` where duration is in seconds
+- Execution pauses at the wait command before continuing
+
 ### 🎯 Practical Examples
 
 **If-Else Logic Example**
@@ -200,6 +221,20 @@ result = (num1 + 5) == num2
 say("Mathematical check: (15 + 5) == 20 is " + result)
 ```
 
+**Timed Sequence Example**
+```blink
+# Countdown with timing control
+say("Starting countdown...")
+wait 1.0
+say("3...")
+wait 1.0
+say("2...")
+wait 1.0
+say("1...")
+wait 1.0
+say("Go!")
+```
+
 ## 🎯 Language Philosophy
 
 **Simplicity First**
@@ -218,6 +253,7 @@ say("Mathematical check: (15 + 5) == 20 is " + result)
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
 - ✅ Robust output with `say()` function
+- ✅ Precise timing control with `wait` command
 
 **What Blink Doesn't Do**
 - ❌ No else-if statements (by design - keep it simple)
