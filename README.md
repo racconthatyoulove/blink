@@ -101,22 +101,18 @@ if score >= 50 {
     say("Grade: B (Could Be Better)")
 }
 
-# Nested conditionals
-if score >= 90 {
-    say("Grade: A+ (Outstanding!)")
+# Another simple example
+if temperature >= 0 {
+    say("Above freezing")
 } else {
-    if score >= 80 {
-        say("Grade: A (Good job!)")
-    } else {
-        say("Grade: B (Keep trying!)")
-    }
+    say("Below freezing")
 }
 ```
 
 **Control Flow Features**
 - Support for `if` statements with optional `else` blocks
 - Clean, simple conditional logic with smart syntax
-- Nested conditionals for complex decision making
+- Focus on single else - keep it simple and readable
 - Proper block parsing with brace support
 ### ⚖️ Comparison Operators
 
@@ -177,18 +173,10 @@ say("Result: " + final_result)          # Program results
 ```blink
 score = 85
 
-if score >= 90 {
-    say("Grade: A+ (Outstanding!)")
+if score >= 80 {
+    say("Grade: A (Great job!)")
 } else {
-    if score >= 80 {
-        say("Grade: A (Great job!)")
-    } else {
-        if score >= 70 {
-            say("Grade: B (Good work!)")
-        } else {
-            say("Grade: C (Keep practicing!)")
-        }
-    }
+    say("Grade: B (Keep practicing!)")
 }
 ```
 
@@ -224,15 +212,16 @@ say("Mathematical check: (15 + 5) == 20 is " + result)
 - ✅ Arithmetic operations with full precision
 - ✅ String concatenation and mixed-type operations
 - ✅ Comparison operators (all 6 types)
-- ✅ If-else statements with clean, simple syntax
-- ✅ Nested conditionals for complex decision making
+- ✅ Simple if-else statements with clean syntax
+- ✅ Single else blocks for clear, readable logic
 - ✅ Parentheses and expression evaluation
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
 - ✅ Robust output with `say()` function
 
 **What Blink Doesn't Do**
-- ❌ No else-if statements (by design - use nested if-else)
+- ❌ No else-if statements (by design - keep it simple)
+- ❌ No complex nested conditionals (focus on clarity)
 - ❌ No loops (focus on simple, linear execution)
 - ❌ No functions (keep it simple)
 - ❌ No complex data structures (arrays, objects)
