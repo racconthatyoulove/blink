@@ -87,27 +87,37 @@ say("User: " + name + ", Age: " + age + ", Active: " + active)
 
 ### 🎯 Control Flow
 
-**Simple If Statements**
+**If-Else Statements**
 ```blink
+# Simple if statement
 if condition {
     # Execute if true
 }
 
-if score >= 90 {
+# If-else statement
+if score >= 50 {
     say("Grade: A (Excellent!)")
+} else {
+    say("Grade: B (Could Be Better)")
 }
 
-if score >= 80 {
-    if score < 90 {
-        say("Grade: B (Good job!)")
+# Nested conditionals
+if score >= 90 {
+    say("Grade: A+ (Outstanding!)")
+} else {
+    if score >= 80 {
+        say("Grade: A (Good job!)")
+    } else {
+        say("Grade: B (Keep trying!)")
     }
 }
 ```
 
-**Nested Conditionals**
-- Support for nested if statements
-- Clean, simple conditional logic
-- No else-if complexity - just pure if statements
+**Control Flow Features**
+- Support for `if` statements with optional `else` blocks
+- Clean, simple conditional logic with smart syntax
+- Nested conditionals for complex decision making
+- Proper block parsing with brace support
 ### ⚖️ Comparison Operators
 
 **Complete Set**: `==`, `!=`, `>`, `<`, `>=`, `<=`
@@ -163,16 +173,33 @@ say("Result: " + final_result)          # Program results
 
 ### 🎯 Practical Examples
 
-**Conditional Logic Example**
+**If-Else Logic Example**
 ```blink
 score = 85
+
 if score >= 90 {
-    say("Grade: A")
-}
-if score >= 80 {
-    if score < 90 {
-        say("Grade: B")
+    say("Grade: A+ (Outstanding!)")
+} else {
+    if score >= 80 {
+        say("Grade: A (Great job!)")
+    } else {
+        if score >= 70 {
+            say("Grade: B (Good work!)")
+        } else {
+            say("Grade: C (Keep practicing!)")
+        }
     }
+}
+```
+
+**Simple Conditional Example**
+```blink
+temperature = -5
+
+if temperature >= 0 {
+    say("Temperature is above freezing")
+} else {
+    say("Temperature is below freezing")
 }
 ```
 
@@ -197,14 +224,15 @@ say("Mathematical check: (15 + 5) == 20 is " + result)
 - ✅ Arithmetic operations with full precision
 - ✅ String concatenation and mixed-type operations
 - ✅ Comparison operators (all 6 types)
-- ✅ Simple if statements (no else-if complexity)
+- ✅ If-else statements with clean, simple syntax
+- ✅ Nested conditionals for complex decision making
 - ✅ Parentheses and expression evaluation
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
 - ✅ Robust output with `say()` function
 
 **What Blink Doesn't Do**
-- ❌ No else-if statements (by design - use nested ifs)
+- ❌ No else-if statements (by design - use nested if-else)
 - ❌ No loops (focus on simple, linear execution)
 - ❌ No functions (keep it simple)
 - ❌ No complex data structures (arrays, objects)
