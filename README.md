@@ -109,11 +109,39 @@ if temperature >= 0 {
 }
 ```
 
+**Loop Statements**
+```blink
+# Basic loop with automatic iteration counter
+loop 3 {
+    say("hello")
+    say(i)  # 'i' is automatically created and incremented (0, 1, 2)
+}
+
+# Loop with variables
+count = 5
+loop count {
+    say("Iteration: " + i)
+}
+
+# Nested loops support
+loop 2 {
+    say("Outer loop: " + i)
+    loop 3 {
+        say("  Inner loop: " + i)
+    }
+}
+```
+
 **Control Flow Features**
 - Support for `if` statements with optional `else` blocks
 - Clean, simple conditional logic with smart syntax
 - Focus on single else - keep it simple and readable
 - Proper block parsing with brace support
+- **Loop functionality** with automatic iteration counter
+- Supports both numeric literals and variables as loop counts
+- Nested loops support with proper variable scoping
+- Zero iteration handling (loop 0 skips execution)
+- Error handling for invalid counts and negative numbers
 ### ⚖️ Comparison Operators
 
 **Complete Set**: `==`, `!=`, `>`, `<`, `>=`, `<=`
@@ -287,6 +315,30 @@ say(x + " " + y)
 # heyyyy woow
 ```
 
+**Loop Examples**
+```blink
+# Simple counting loop
+loop 5 {
+    say("Count: " + i)
+}
+# Output: Count: 0, Count: 1, Count: 2, Count: 3, Count: 4
+
+# Loop with conditional logic
+loop 3 {
+    if i >= 2 {
+        say("High iteration: " + i)
+    } else {
+        say("Low iteration: " + i)
+    }
+}
+
+# Variable-controlled loop
+max_iterations = 4
+loop max_iterations {
+    say("Processing item " + i)
+}
+```
+
 ## 🎯 Language Philosophy
 
 **Simplicity First**
@@ -303,6 +355,8 @@ say(x + " " + y)
 - ✅ Comparison operators (all 6 types)
 - ✅ Simple if-else statements with clean syntax
 - ✅ Single else blocks for clear, readable logic
+- ✅ **Loop statements with automatic iteration counter**
+- ✅ **Nested loops with proper variable scoping**
 - ✅ Parentheses and expression evaluation
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
@@ -312,7 +366,6 @@ say(x + " " + y)
 **What Blink Doesn't Do**
 - ❌ No else-if statements (by design - keep it simple)
 - ❌ No complex nested conditionals (focus on clarity)
-- ❌ No loops (focus on simple, linear execution)
 - ❌ No functions (keep it simple)
 - ❌ No complex data structures (arrays, objects)
 
