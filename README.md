@@ -216,6 +216,46 @@ wait 1.322  # Wait 1.322 seconds (precise timing)
 - Simple syntax: `wait <duration>` where duration is in seconds
 - Execution pauses at the wait command before continuing
 
+### 🛑 Program Control
+
+**stop Command**: Immediately halt program execution
+
+```blink
+say("this will run with no problem at all")
+stop
+say("this will not be runned")
+x = "hello"
+say("this will also not run")
+```
+
+**Output:**
+```
+this will run with no problem at all
+stopped
+```
+
+**Important Rules:**
+- ✅ **Works only at the top level** - must be at the beginning of a line in main code
+- ❌ **Does NOT work inside blocks** - cannot be used inside loops, conditionals, or other blocks
+- 🚫 **Invalid usage examples:**
+  ```blink
+  loop 44 {
+      say("hey")
+      stop    # ❌ This will NOT work - stop doesn't work inside blocks
+      say("hey")
+  }
+  
+  if condition {
+      stop    # ❌ This will NOT work - stop doesn't work inside blocks
+  }
+  ```
+
+**Features:**
+- Immediate program termination with "stopped" message
+- Simple syntax: just `stop` on its own line
+- Perfect for debugging, testing, and controlled program termination
+- All code after `stop` is completely ignored and never executed
+
 ### 💬 Interactive Input
 
 **ask Command**: Get user input interactively from the terminal
@@ -479,6 +519,8 @@ remove = location, encounter
 - ✅ **Clean terminal formatting for user interaction**
 - ✅ **Random selection with `random` command**
 - ✅ **Equal probability distribution for all options**
+- ✅ **Program control with `stop` command**
+- ✅ **Immediate execution termination for debugging**
 - ✅ Parentheses and expression evaluation
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
