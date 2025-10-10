@@ -234,9 +234,55 @@ this will run with no problem at all
 stopped
 ```
 
+**unstop Command**: Resume execution after a stop command
+
+```blink
+say("this will be executed, no problem")
+stop
+say("this will not be executed")
+say("this will not be executed also")
+unstop
+say("this will get executed also")
+```
+
+**Output:**
+```
+this will be executed, no problem
+stopped
+un-stopped
+this will get executed also
+```
+
+**Advanced Stop/Unstop Example:**
+```blink
+say("First message")
+stop
+say("This won't run")
+unstop
+say("Back to running")
+say("Still running")
+stop
+say("Stopped again - won't run")
+unstop
+say("Final message after unstop")
+```
+
+**Output:**
+```
+First message
+stopped
+un-stopped
+Back to running
+Still running
+stopped
+un-stopped
+Final message after unstop
+```
+
 **Important Rules:**
 - ✅ **Works only at the top level** - must be at the beginning of a line in main code
 - ❌ **Does NOT work inside blocks** - cannot be used inside loops, conditionals, or other blocks
+- 🔄 **Multiple cycles supported** - can use stop/unstop multiple times in the same program
 - 🚫 **Invalid usage examples:**
   ```blink
   loop 44 {
@@ -247,14 +293,17 @@ stopped
   
   if condition {
       stop    # ❌ This will NOT work - stop doesn't work inside blocks
+      unstop  # ❌ This will NOT work - unstop doesn't work inside blocks
   }
   ```
 
 **Features:**
-- Immediate program termination with "stopped" message
-- Simple syntax: just `stop` on its own line
-- Perfect for debugging, testing, and controlled program termination
-- All code after `stop` is completely ignored and never executed
+- **stop**: Immediate program pause with "stopped" message
+- **unstop**: Resume execution with "un-stopped" message
+- Simple syntax: just `stop` or `unstop` on their own lines
+- Perfect for debugging, testing, and controlled program flow
+- Flexible execution control with multiple stop/unstop cycles
+- State tracking ensures unstop only works after stop
 
 ### 💬 Interactive Input
 
@@ -266,13 +315,26 @@ ask("What's your name?") {
     say("Hello, " + name + "!")
 }
 
-ask("What's your age?") {
-    age = answer
-    say("You are " + age + " years old.")
+ask("What's your favorite color?") {
+    color = answer
+    say("You chose: " + color)
+}
+
+# Improved comparisons - you can now compare without quotes!
+if color == Red {
+    say("Hey it's red, mine too!")
+}
+
+if color == Blue {
+    say("Blue is a cool color!")
+}
+
+if color == Green {
+    say("Green like nature!")
 }
 
 say("Nice to meet you, " + name + "!")
-remove = name, age
+remove = name, color
 ```
 
 **Terminal Output Format:**
@@ -280,15 +342,17 @@ remove = name, age
 What's your name?
 > Jeff
 Hello, Jeff!
-What's your age?
-> 25
-You are 25 years old.
+What's your favorite color?
+> Red
+You chose: Red
+Hey it's red, mine too!
 Nice to meet you, Jeff!
 ```
 
-**Features:**
+**Enhanced Features:**
 - Interactive terminal prompts with custom questions
 - Automatic `answer` variable creation with user input
+- **NEW**: Smart string comparisons without quotes (e.g., `color == Red`)
 - Clean formatting with question on one line, input on next with ">" prompt
 - Block execution after receiving input
 - Works seamlessly with loops, conditionals, and other language features
@@ -330,6 +394,239 @@ The fruit was: banana
 - Block execution after random selection
 - Perfect for games, decision making, and randomized content
 - Works seamlessly with loops, conditionals, and other language features
+
+### 🪟 Window System (Game Development)
+
+**window Command**: Create and manage GUI windows for game development
+
+```blink
+# Define a window with all available parameters
+window test {
+    name: 🎮 First Test 🎮 // Custom window title (supports emojis!)
+    size: 600x500 // Window size in pixels (width x height)
+    resize: true // Allow user to resize window (default: true)
+    triangle: true // Render a dynamic triangle that scales with window
+    grid: true // Render a dynamic grid overlay that scales with window
+    color: FF0000 // Background color in hex format (with or without #)
+    icon: icons/game.png // Window icon file path (PNG or JPG)
+    selector: true // Enable coordinate selector - right-click for coordinates
+    cursor: false // Hide mouse cursor (great for games) (NEW)
+    transparency: 0.9 // Window transparency 0.0-1.0 (NEW)
+    always_on_top: true // Keep window above all others (NEW)
+}
+
+# Define fullscreen windows with graphics, colors, and icons
+window game_fullscreen {
+    name: 🎮 My Game
+    size: fullscreen // Maximized window (shows taskbar)
+    resize: false // Lock window size (no resizing allowed)
+    triangle: true // Dynamic triangle rendering
+    grid: false // No grid overlay
+    color: #000080 // Dark blue background
+    icon: icons/fullscreen.jpg // Custom icon for fullscreen mode
+}
+
+window game_entirescreen {
+    name: 🌟 Immersive Game
+    size: entirescreen // Exclusive fullscreen (hides everything)
+    resize: false // Fixed size window
+    triangle: false // No triangle graphics
+    grid: true // Grid overlay only
+    color: 800080 // Purple background (# is optional)
+    icon: icons/immersive.png // Icon for immersive mode
+}
+
+# Open the window (still uses 'test' as identifier)
+window open test
+
+# Keep window open for 10 seconds
+wait 10
+
+# Close the window (still uses 'test' as identifier)
+window close test
+```
+
+**All Window Options Example:**
+```blink
+# Create windows with different graphics, colors, icons, and advanced features
+window game_window {
+    name: 🎮🌈 Game Window
+    size: 800x600 // Specific pixel dimensions
+    resize: true // User can resize this window
+    triangle: true // Render dynamic triangle that scales with window
+    grid: true // Render grid overlay behind triangle
+    color: #FF6B6B // Light red background
+    icon: icons/game.png // Game controller icon
+    cursor: false // Hide cursor for immersive gaming
+    selector: true // Enable coordinate selection
+}
+
+window overlay_window {
+    name: 🌟 Transparent Overlay
+    size: 600x400 // Fixed dimensions
+    resize: false // User cannot resize this window
+    triangle: false // No triangle
+    grid: true // Grid overlay only
+    color: 0066CC // Blue background
+    icon: icons/overlay.png // Overlay icon
+    transparency: 0.7 // Semi-transparent overlay
+    always_on_top: true // Stay above other windows
+}
+
+window graphics_demo {
+    name: 🔺💚 Graphics Demo
+    size: 500x300 // Simple window
+    resize: true // Resizable
+    triangle: true // Triangle graphics
+    grid: false // No grid overlay
+    color: 00AA00 // Green background
+    icon: icons/triangle.png // Triangle icon
+}
+
+window settings_panel {
+    name: ⚙️ Settings Panel
+    size: 400x300 // Simple window
+    resize: true // Resizable
+    triangle: false // No triangle
+    grid: false // No grid
+    color: #800080 // Purple background
+    icon: icons/settings.png // Settings gear icon
+}
+
+# Open different types of windows
+window open game_window       // Opens game window with custom icon
+say("Game window opened! Custom game controller icon in taskbar.")
+
+window open editor_window     // Opens editor window with editor icon
+say("Editor window opened! Text editor icon visible.")
+
+window open graphics_demo     // Opens graphics demo with triangle icon
+say("Graphics demo opened! Triangle icon matches the content.")
+
+window open settings_panel    // Opens settings with gear icon
+say("Settings panel opened! Gear icon for easy identification.")
+
+wait 5
+
+# Close all windows
+window close game_window
+window close editor_window
+window close graphics_demo
+window close settings_panel
+```
+
+**Default Behavior:**
+```blink
+# Window without custom parameters uses defaults
+window simple {
+    // No name parameter - will use "simple" as window title
+    // No size parameter - will use 400x300 as default size
+    // No resize parameter - will default to true (resizable)
+    // No triangle parameter - will default to false (no triangle)
+    // No grid parameter - will default to false (no grid)
+    // No color parameter - will default to black (000000)
+    // No icon parameter - will use default system icon
+}
+
+window open simple    // Opens 400x300 resizable black window titled "simple"
+
+# You can specify individual parameters
+window custom_name {
+    name: My Custom Window // Custom name, default size/resize/graphics/color/icon
+}
+
+window custom_triangle {
+    triangle: true // Default size and name, but with triangle graphics
+}
+
+window custom_grid {
+    grid: true // Default size and name, but with grid overlay
+}
+
+window custom_color {
+    color: #FF0000 // Red background, default everything else
+}
+
+window custom_icon {
+    icon: icons/my_app.png // Custom icon, default everything else
+}
+
+window custom_both_graphics {
+    triangle: true // Triangle graphics
+    grid: true // Grid overlay behind triangle
+    color: 0066FF // Blue background
+    icon: icons/graphics.jpg // Custom icon for graphics window
+}
+
+window custom_size {
+    size: 1024x768 // Custom size, uses "custom_size" as title
+}
+```
+
+**Features:**
+- **GUI Window Creation**: Real graphical windows that appear on your desktop
+- **Custom Window Titles**: Set beautiful display names with `name:` parameter
+- **Custom Window Sizes**: Set initial window dimensions with `size:` parameter
+- **Resize Control**: Lock or allow window resizing with `resize:` parameter
+- **Dynamic Graphics**: Render interactive graphics with `triangle:` and `grid:` parameters
+- **Custom Background Colors**: Set any background color with `color:` parameter
+- **Custom Window Icons**: Set window icons with `icon:` parameter
+- **Coordinate Selector**: Right-click coordinate detection with `selector:` parameter
+- **Cursor Control**: Show/hide mouse cursor with `cursor:` parameter (NEW)
+- **Window Transparency**: Adjustable transparency with `transparency:` parameter (NEW)
+- **Always On Top**: Keep window above others with `always_on_top:` parameter (NEW)
+- **Grid Overlay System**: Dynamic grid that scales with window size
+- **Fullscreen Modes**: Support for both fullscreen and entirescreen modes
+- **Emoji Support**: Use emojis and special characters in window titles
+- **Flexible Naming**: Commands use simple identifiers, display shows custom names
+- **Size Formats**: 
+  - **Pixel dimensions**: "widthxheight" format (e.g., "800x600", "1024x768")
+  - **fullscreen**: Maximized window that shows taskbar/dock
+  - **entirescreen**: Exclusive fullscreen that hides everything (press ESC to exit)
+- **Resize Options**: 
+  - **resize: true**: Allow user to resize window (default behavior)
+  - **resize: false**: Lock window to fixed size, prevent resizing
+- **Graphics Options**: 
+  - **triangle: true**: Render a colorful triangle that dynamically scales with window size
+  - **triangle: false**: No triangle graphics (default behavior)
+  - **grid: true**: Render a semi-transparent grid overlay that scales with window size
+  - **grid: false**: No grid overlay (default behavior)
+- **Color Options**: 
+  - **color: RRGGBB**: Set background color using 6-digit hex format (e.g., "FF0000" for red)
+  - **color: #RRGGBB**: Hex format with optional # prefix (e.g., "#00FF00" for green)
+  - **Default**: Black background (000000) if no color specified
+- **Icon Options**: 
+  - **icon: path/to/file.png**: Set window icon using PNG image file
+  - **icon: path/to/file.jpg**: Set window icon using JPG/JPEG image file
+  - **Relative paths**: Icons relative to blink/ directory (e.g., "icons/game.png")
+  - **Automatic loading**: Images are loaded and processed automatically
+  - **Default**: System default icon if no icon specified
+- **Cursor Options**: 
+  - **cursor: true**: Show mouse cursor when over window (default behavior) (NEW)
+  - **cursor: false**: Hide mouse cursor when over window (perfect for games) (NEW)
+- **Transparency Options**: 
+  - **transparency: 1.0**: Fully opaque window (default behavior) (NEW)
+  - **transparency: 0.5**: 50% transparent window (NEW)
+  - **transparency: 0.0**: Fully transparent window (invisible) (NEW)
+  - **Range**: Values automatically clamped between 0.0 and 1.0 (NEW)
+- **Always On Top Options**: 
+  - **always_on_top: false**: Normal window behavior (default) (NEW)
+  - **always_on_top: true**: Keep window above all other windows (NEW)
+- **Coordinate Selector Options**: 
+  - **selector: false**: No coordinate detection (default behavior)
+  - **selector: true**: Enable right-click coordinate detection
+- **Layered Rendering**: Proper rendering order - background color → grid → triangle → future graphics
+- **Smart Defaults**: 400x300 pixels if no size specified, identifier as title if no name, resizable by default, no graphics by default, black background by default, system icon by default
+- **Automatic Centering**: Normal windows automatically center on screen based on their size
+- **Dynamic Scaling**: All graphics automatically resize and maintain proportions when window is resized
+- **Transparency Support**: Grid uses semi-transparent rendering for professional overlay effect (NEW)
+- **Window Lifecycle Management**: Open and close windows programmatically
+- **Professional Window Behavior**: Proper rendering and user experience with OpenGL graphics
+- **Game Development Ready**: Perfect foundation for building games with layered graphics rendering and full window control
+- **Multiple Windows**: Support for creating and managing multiple windows with different sizes, modes, resize settings, and graphics combinations
+- **Error Handling**: Prevents opening undefined windows or duplicate operations
+- **Cross-Platform**: Works on Windows, macOS, and Linux with OpenGL support
+- **Future Extensible**: Ready for more graphics layers, input handling, and game objects
 
 ### 🛡️ Variable Management & Protection
 
@@ -516,11 +813,31 @@ remove = location, encounter
 - ✅ **Loop statements with automatic iteration counter**
 - ✅ **Nested loops with proper variable scoping**
 - ✅ **Interactive input with `ask` command**
+- ✅ **Smart string comparisons without quotes (NEW)**
 - ✅ **Clean terminal formatting for user interaction**
 - ✅ **Random selection with `random` command**
 - ✅ **Equal probability distribution for all options**
-- ✅ **Program control with `stop` command**
-- ✅ **Immediate execution termination for debugging**
+- ✅ **GUI Window System for game development**
+- ✅ **Custom window titles with emoji support**
+- ✅ **Custom window sizes with flexible dimensions**
+- ✅ **Window resize control (lock or allow resizing)**
+- ✅ **Dynamic triangle graphics with automatic scaling**
+- ✅ **Dynamic grid overlay system with transparency**
+- ✅ **Custom background colors with hex support**
+- ✅ **Custom window icons with PNG/JPG support**
+- ✅ **Coordinate selector with right-click detection**
+- ✅ **Cursor control for immersive gaming (NEW)**
+- ✅ **Window transparency for modern UI effects (NEW)**
+- ✅ **Always on top functionality for overlays (NEW)**
+- ✅ **Layered graphics rendering system**
+- ✅ **Fullscreen and entirescreen modes for immersive experiences**
+- ✅ **Flexible window naming system**
+- ✅ **Real graphical windows with OpenGL rendering**
+- ✅ **Automatic window centering based on size**
+- ✅ **Window lifecycle management (open/close)**
+- ✅ **Program control with `stop` and `unstop` commands**
+- ✅ **Flexible execution pause and resume for debugging**
+- ✅ **Multiple stop/unstop cycles support**
 - ✅ Parentheses and expression evaluation
 - ✅ Flexible variable naming (including numeric names)
 - ✅ Dual comment styles (# and //)
@@ -556,6 +873,7 @@ go run ./Blink/main.go ./Blink/blink/test.blink
 
 ### 📚 Learning Resources
 - **test.blink**: Complete language documentation with examples
+- **game_dev.blink**: Game development features and window system examples
 - **This README**: Comprehensive feature overview
 
 ## 🏆 Why Choose Blink?
