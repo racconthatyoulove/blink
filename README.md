@@ -397,7 +397,7 @@ The fruit was: banana
 
 ### 🪟 Window System (Game Development)
 
-**window Command**: Create and manage GUI windows for game development
+**window Command**: Create and manage GUI windows with professional text rendering and visual effects
 
 ```blink
 # Define a window with all available parameters
@@ -561,6 +561,124 @@ window custom_both_graphics {
 window custom_size {
     size: 1024x768 // Custom size, uses "custom_size" as title
 }
+```
+
+### 📝 Text Rendering System (NEW)
+
+**pop Elements**: Add professional text rendering to your windows with TrueType font support
+
+```blink
+window textDemo {
+    name: 📝 Text Rendering Demo
+    size: 1200x800
+    color: #001122
+    
+    pop title {
+        text("BLINK TEXT SYSTEM")
+        size = 50
+        middle = x(600), y(150)
+    }
+    
+    pop subtitle {
+        text("Professional TrueType Font Rendering")
+        size = 25
+        middle = x(600), y(200)
+    }
+    
+    pop alphabet {
+        text("A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z")
+        size = 15
+        middle = x(600), y(300)
+    }
+    
+    pop numbers {
+        text("0, 1, 2, 3, 4, 5, 6, 7, 8, 9")
+        size = 20
+        middle = x(600), y(350)
+    }
+    
+    pop symbols {
+        text("! @ # $ % ^ & * ( ) - = + [ ] { } | \\ : ; \" ' < > ? / . ,")
+        size = 12
+        middle = x(600), y(400)
+    }
+    
+    pop math {
+        text("Math: 2 + 3 = 5, 10 - 4 = 6, 3 * 7 = 21, 15 / 3 = 5")
+        size = 18
+        middle = x(600), y(450)
+    }
+}
+
+window open textDemo
+wait 8
+window close textDemo
+```
+
+#### Text Element Parameters
+
+| Parameter | Type | Description | Example |
+|-----------|------|-------------|---------|
+| `text()` | String | Text content to display | `text("Hello World")` |
+| `size` | Number | Text size (1-100 scale) | `size = 25` |
+| `middle` | Coordinates | Center position of text | `middle = x(400), y(300)` |
+
+#### Supported Characters
+
+**Complete ASCII Character Set:**
+- **Letters**: A-Z, a-z (uppercase and lowercase)
+- **Numbers**: 0-9 (all digits)
+- **Punctuation**: `. , ! ? : ; " ' ` (common punctuation)
+- **Math Symbols**: `+ - * / = < > ( ) [ ] { }` (mathematical operations)
+- **Special Characters**: `@ # $ % ^ & _ | \ ~ ` (programming symbols)
+- **Spaces**: Full space and formatting support
+
+**Font Features:**
+- **TrueType Rendering**: Professional, smooth text rendering
+- **Scalable**: Text scales smoothly from size 1 to 100
+- **Anti-aliased**: Smooth edges for professional appearance
+- **Centered Positioning**: Text centers perfectly at specified coordinates
+- **Window Scaling**: Text scales proportionally when window is resized
+
+### 📏 Complete Window Parameters Reference
+
+| Parameter | Type | Default | Description | Example |
+|-----------|------|---------|-------------|---------|
+| `name` | String | window identifier | Display name in title bar | `name: 🎮 My Game 🎮` |
+| `size` | String | `400x300` | Window dimensions or fullscreen | `size: 1920x1080` |
+| `resize` | Boolean | `true` | Allow user to resize window | `resize: false` |
+| `color` | Hex Color | `#000000` | Background color | `color: #ff3300` |
+| `icon` | File Path | system default | Window icon (PNG/JPG) | `icon: icons/app.png` |
+| `triangle` | Boolean | `false` | Show animated triangle | `triangle: true` |
+| `grid` | Boolean | `false` | Show grid overlay | `grid: true` |
+| `selector` | Boolean | `false` | Enable coordinate selector | `selector: true` |
+| `cursor` | Boolean | `true` | Show mouse cursor | `cursor: false` |
+| `transparency` | Float | `1.0` | Window transparency (0.0-1.0) | `transparency: 0.8` |
+| `always_on_top` | Boolean | `false` | Keep window above others | `always_on_top: true` |
+
+### 🎨 Size Options
+
+- **Specific Dimensions**: `800x600`, `1920x1080`, `1100x700`
+- **Fullscreen**: `fullscreen` (maximized with taskbar visible)
+- **Entirescreen**: `entirescreen` (exclusive fullscreen, hides everything)
+
+### 🎯 Coordinate System
+
+- **Origin**: Top-left corner (0, 0)
+- **X-axis**: Left to right (positive direction)
+- **Y-axis**: Top to bottom (positive direction)
+- **Text Positioning**: `middle = x(xPos), y(yPos)` centers text at coordinates
+- **Coordinate Selector**: Right-click when `selector: true` to get pixel coordinates
+
+### 🎨 Color Format
+
+Colors support hex format with or without `#`:
+- `color: #ff0000` (Red)
+- `color: #00ff00` (Green)
+- `color: #0000ff` (Blue)
+- `color: ff3300` (Orange - # optional)
+- `color: #ffffff` (White)
+- `color: #000000` (Black)
 ```
 
 **Features:**
