@@ -409,6 +409,7 @@ window test {
     grid: true // Render a dynamic grid overlay that scales with window
     color: FF0000 // Background color in hex format (with or without #)
     icon: icons/game.png // Window icon file path (PNG or JPG)
+    image: icons/background.jpg // Background image file path (PNG or JPG) (NEW)
     selector: true // Enable coordinate selector - right-click for coordinates
     cursor: false // Hide mouse cursor (great for games) (NEW)
     transparency: 0.9 // Window transparency 0.0-1.0 (NEW)
@@ -481,6 +482,7 @@ window graphics_demo {
     grid: false // No grid overlay
     color: 00AA00 // Green background
     icon: icons/triangle.png // Triangle icon
+    image: icons/nature.jpg // Background image (NEW)
 }
 
 window settings_panel {
@@ -562,6 +564,54 @@ window custom_size {
     size: 1024x768 // Custom size, uses "custom_size" as title
 }
 ```
+
+### 🖼️ Background Image System (NEW)
+
+**Background Images**: Set beautiful background images for your windows with automatic scaling and centering
+
+#### ✨ Smart Image Handling
+
+- **Automatic aspect ratio preservation**: Images maintain their proportions when scaled
+- **Smart centering**: Images are automatically centered in the window
+- **Multi-format support**: Supports both PNG and JPG/JPEG image formats
+- **Dynamic resizing**: Background images scale smoothly when window is resized
+- **Fallback support**: If image fails to load, falls back to the specified background color
+
+```blink
+window imageDemo {
+    name: 🖼️ Background Image Demo
+    size: 800x600
+    color: #2C3E50 // Fallback color if image fails to load
+    image: icons/wallpaper.jpg // Background image path
+    
+    pop welcome {
+        text("Welcome to Blink!")
+        size = 40
+        middle = x(400), y(300)
+    }
+}
+
+# Example with different image formats
+window pngBackground {
+    name: 🌸 PNG Background
+    size: 600x400
+    color: #34495E // Dark blue fallback
+    image: images/nature.png // PNG format supported
+}
+
+window jpgBackground {
+    name: 🌅 JPG Background  
+    size: 1024x768
+    color: #E74C3C // Red fallback
+    image: photos/sunset.jpg // JPG format supported
+}
+```
+
+**Image Path Guidelines:**
+- **Relative paths**: `image: icons/bg.jpg` (relative to blink directory)
+- **Absolute paths**: `image: /home/user/images/bg.png` (full system path)
+- **Supported formats**: PNG, JPG, JPEG
+- **Recommended**: Use relative paths for portability
 
 ### 📝 Text Rendering System (NEW)
 
@@ -760,6 +810,7 @@ Colors support hex format with or without `#`:
 - **Dynamic Graphics**: Render interactive graphics with `triangle:` and `grid:` parameters
 - **Custom Background Colors**: Set any background color with `color:` parameter
 - **Custom Window Icons**: Set window icons with `icon:` parameter
+- **Background Images**: Set beautiful background images with `image:` parameter (NEW)
 - **Coordinate Selector**: Right-click coordinate detection with `selector:` parameter
 - **Cursor Control**: Show/hide mouse cursor with `cursor:` parameter (NEW)
 - **Window Transparency**: Adjustable transparency with `transparency:` parameter (NEW)
@@ -1014,6 +1065,7 @@ remove = location, encounter
 - ✅ **Dynamic grid overlay system with transparency**
 - ✅ **Custom background colors with hex support**
 - ✅ **Custom window icons with PNG/JPG support**
+- ✅ **Background images with automatic scaling and centering (NEW)**
 - ✅ **Coordinate selector with right-click detection**
 - ✅ **Cursor control for immersive gaming (NEW)**
 - ✅ **Window transparency for modern UI effects (NEW)**
