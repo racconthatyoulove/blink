@@ -567,6 +567,16 @@ window custom_size {
 
 **pop Elements**: Add professional text rendering to your windows with TrueType font support
 
+#### ✨ Multiple Pop Elements Support (FIXED)
+
+You can now add **multiple text elements** to a single window! Each pop element renders independently with its own position, size, and content.
+
+**🚀 Performance Improvements:**
+- **Fixed rendering issue**: Multiple pop elements now display correctly without overwriting each other
+- **Optimized texture management**: Individual textures for each text element instead of full-screen overlays
+- **Eliminated lag and glitching**: Smooth rendering performance even with many text elements
+- **Proper positioning**: Each text element renders at its exact specified coordinates
+
 ```blink
 window textDemo {
     name: 📝 Text Rendering Demo
@@ -613,6 +623,67 @@ window textDemo {
 window open textDemo
 wait 8
 window close textDemo
+```
+
+#### 🎯 Multiple Pop Elements Example
+
+```blink
+window multiTextDemo {
+    name: 🎨 Multiple Text Elements
+    size: 1000x600
+    color: #112233
+    
+    # Header section
+    pop header {
+        text("MULTIPLE TEXT DEMO")
+        size = 35
+        middle = x(500), y(80)
+    }
+    
+    # Left column
+    pop leftTitle {
+        text("Left Column")
+        size = 20
+        middle = x(250), y(150)
+    }
+    
+    pop leftContent {
+        text("This text appears on the left side")
+        size = 12
+        middle = x(250), y(200)
+    }
+    
+    # Right column
+    pop rightTitle {
+        text("Right Column")
+        size = 20
+        middle = x(750), y(150)
+    }
+    
+    pop rightContent {
+        text("This text appears on the right side")
+        size = 12
+        middle = x(750), y(200)
+    }
+    
+    # Center content
+    pop centerInfo {
+        text("All text elements render simultaneously!")
+        size = 16
+        middle = x(500), y(300)
+    }
+    
+    # Footer
+    pop footer {
+        text("Footer: Multiple pop elements working perfectly")
+        size = 10
+        middle = x(500), y(500)
+    }
+}
+
+window open multiTextDemo
+wait 10
+window close multiTextDemo
 ```
 
 #### Text Element Parameters
